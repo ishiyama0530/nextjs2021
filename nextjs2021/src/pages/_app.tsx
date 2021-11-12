@@ -8,6 +8,7 @@ var a = 0;
 var a = 0;
 var a = 0;
 var a = 0;
+var a = 0;
   return <Component {...pageProps} />
 }
 
