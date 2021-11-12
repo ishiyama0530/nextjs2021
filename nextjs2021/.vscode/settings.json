@@ -1,16 +1,16 @@
 {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-        // "source.organizeImports": true
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "files.eol": "\n",
-    "typescript.tsdk": "node_modules\\typescript\\lib",
-    "gitlens.remotes": [
-        {
-            "domain": "github.com",
-            "type": "GitHub"
-        }
-    ]
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+    // "source.organizeImports": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.eol": "\n",
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "gitlens.remotes": [
+    {
+      "domain": "github.com",
+      "type": "GitHub"
+    }
+  ]
 }
