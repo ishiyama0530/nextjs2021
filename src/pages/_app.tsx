@@ -1,12 +1,24 @@
 import "../styles/globals.css"
 import type { AppProps } from "next/app"
-import React from "react"
+import React, { ReactElement, ReactNode } from "react"
 import { SWRConfig } from "swr"
 import { CssBaseline, ThemeProvider } from "@mui/material"
 import { theme } from "../mui/theme/default-theme"
 import Head from "next/head"
+import { NextPage } from "next"
 
-function MyApp({ Component, pageProps }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout ?? ((page) => page)
+
   return (
     <SWRConfig
       value={{
@@ -20,9 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <CssBaseline />
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <ThemeProvider theme={theme}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
     </SWRConfig>
   )
 }

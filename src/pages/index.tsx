@@ -3,10 +3,13 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import React from "react"
+import type { ReactElement } from "react"
+import MasterLayout from "../components/layout/MasterLayout"
 import { usePrice } from "../hooks/usePrice"
 import styles from "../styles/Home.module.css"
+import Layer1Layout from "../components/layout/Layer1Layout"
 
-const Home: NextPage = () => {
+const Home = () => {
   const { price, loading, error } = usePrice("BTCUSDT")
 
   if (loading) return <div>LOADING</div>
@@ -18,6 +21,14 @@ const Home: NextPage = () => {
         {price?.symbol} - {price?.price}
       </Typography>
     </div>
+  )
+}
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <MasterLayout>
+      <Layer1Layout>{page}</Layer1Layout>
+    </MasterLayout>
   )
 }
 
