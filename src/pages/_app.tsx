@@ -15,7 +15,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       }}
     >
       <Head>
-        {/* _document.tsx に定義すると viewport の宣言が重複してしまう */}
+        {/* Viewport meta tags should not be used in _document.js's <Head> */}
+        {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
