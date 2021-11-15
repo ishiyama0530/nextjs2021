@@ -4,6 +4,7 @@ import React from "react"
 import { SWRConfig } from "swr"
 import { ThemeProvider } from "@mui/material"
 import { theme } from "../mui/theme/default-theme"
+import Head from "next/head"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,6 +14,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         fetcher: (resource, init) => fetch(resource, init).then((res) => res.json()),
       }}
     >
+      <Head>
+        {/* _document.tsx に定義すると viewport の宣言が重複してしまう */}
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
