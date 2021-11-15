@@ -2,7 +2,7 @@ import "../styles/globals.css"
 import type { AppProps } from "next/app"
 import React from "react"
 import { SWRConfig } from "swr"
-import { ThemeProvider } from "@mui/material"
+import { CssBaseline, ThemeProvider } from "@mui/material"
 import { theme } from "../mui/theme/default-theme"
 import Head from "next/head"
 
@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
+      <CssBaseline />
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
