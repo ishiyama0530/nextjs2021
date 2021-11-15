@@ -2,6 +2,8 @@ import "../styles/globals.css"
 import type { AppProps } from "next/app"
 import React from "react"
 import { SWRConfig } from "swr"
+import { ThemeProvider } from "@mui/material"
+import { theme } from "../mui/theme/default-theme"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,7 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         fetcher: (resource, init) => fetch(resource, init).then((res) => res.json()),
       }}
     >
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </SWRConfig>
   )
 }

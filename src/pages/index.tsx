@@ -1,6 +1,8 @@
+import { Icon, Typography } from "@mui/material"
 import type { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
+import React from "react"
 import { usePrice } from "../hooks/usePrice"
 import styles from "../styles/Home.module.css"
 
@@ -11,9 +13,10 @@ const Home: NextPage = () => {
   if (error) return <div>ERROR</div>
   return (
     <div>
-      <p>
+      <Icon>savings</Icon>
+      <Typography>
         {price?.symbol} - {price?.price}
-      </p>
+      </Typography>
     </div>
   )
 }
