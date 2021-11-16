@@ -1,13 +1,13 @@
 import "../styles/globals.css"
-import type { AppProps } from "next/app"
-import React, { ReactElement, ReactNode } from "react"
-import { SWRConfig } from "swr"
-import { CssBaseline, ThemeProvider } from "@mui/material"
-import { theme } from "../mui/theme/default-theme"
 import Head from "next/head"
+import React, { ReactElement, ReactNode } from "react"
+import type { AppProps } from "next/app"
+import { CssBaseline, ThemeProvider } from "@mui/material"
+import { DebugObserver } from "../debug/recoil/DebugObserver"
 import { NextPage } from "next"
 import { RecoilRoot } from "recoil"
-import { DebugObserver } from "../debug/recoil/DebugObserver"
+import { SWRConfig } from "swr"
+import { theme } from "../mui/theme/default-theme"
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode

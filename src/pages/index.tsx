@@ -3,7 +3,7 @@ import type { ReactElement } from "react"
 import React from "react"
 import { Layer1Layout } from "../components/layout/Layer1Layout"
 import { MasterLayout } from "../components/layout/MasterLayout"
-import Link from "../components/link/Link"
+import { Link } from "../components/link/Link"
 import { usePrice } from "../hooks/usePrice"
 
 const HomePage = () => {
