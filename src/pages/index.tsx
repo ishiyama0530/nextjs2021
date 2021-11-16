@@ -9,7 +9,7 @@ import { usePrice } from "../hooks/usePrice"
 import styles from "../styles/Home.module.css"
 import Layer1Layout from "../components/layout/Layer1Layout"
 
-const Home = () => {
+const HomePage = () => {
   const { price, loading, error } = usePrice("BTCUSDT")
 
   if (loading) return <div>LOADING</div>
@@ -24,7 +24,7 @@ const Home = () => {
   )
 }
 
-Home.getLayout = function getLayout(page: ReactElement) {
+HomePage.getLayout = function getLayout(page: ReactElement) {
   return (
     <MasterLayout>
       <Layer1Layout>{page}</Layer1Layout>
@@ -32,4 +32,4 @@ Home.getLayout = function getLayout(page: ReactElement) {
   )
 }
 
-export default Home
+export default HomePage

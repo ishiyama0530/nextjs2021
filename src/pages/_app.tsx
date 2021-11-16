@@ -6,6 +6,8 @@ import { CssBaseline, ThemeProvider } from "@mui/material"
 import { theme } from "../mui/theme/default-theme"
 import Head from "next/head"
 import { NextPage } from "next"
+import { RecoilRoot } from "recoil"
+import { DebugObserver } from "../debug/recoil/DebugObserver"
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -26,13 +28,16 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         fetcher: (resource, init) => fetch(resource, init).then((res) => res.json()),
       }}
     >
-      <Head>
-        {/* Viewport meta tags should not be used in _document.js's <Head> */}
-        {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <CssBaseline />
-      <ThemeProvider theme={theme}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
+      <RecoilRoot>
+        <DebugObserver />
+        <Head>
+          {/* Viewport meta tags should not be used in _document.js's <Head> */}
+          {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <CssBaseline />
+        <ThemeProvider theme={theme}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
+      </RecoilRoot>
     </SWRConfig>
   )
 }
