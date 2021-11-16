@@ -54,7 +54,7 @@ const LoginPage = () => {
           label="UserName"
           autoComplete="name"
           {...register("username")}
-          error={errors.username?.message}
+          error={!!errors.username?.message}
           helperText={errors.username?.message}
         />
         <TextField
@@ -66,7 +66,7 @@ const LoginPage = () => {
           id="password"
           autoComplete="current-password"
           {...register("password")}
-          error={errors.password?.message}
+          error={!!errors.password?.message}
           helperText={errors.password?.message}
         />
         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
