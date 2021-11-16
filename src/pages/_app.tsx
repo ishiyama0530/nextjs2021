@@ -8,6 +8,7 @@ import { NextPage } from "next"
 import { RecoilRoot } from "recoil"
 import { SWRConfig } from "swr"
 import { theme } from "../mui/theme/default-theme"
+import { env } from "../libs/config/env"
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -29,7 +30,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       }}
     >
       <RecoilRoot>
-        <DebugObserver />
+        {env.debug && <DebugObserver />}
         <Head>
           {/* Viewport meta tags should not be used in _document.js's <Head> */}
           {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
