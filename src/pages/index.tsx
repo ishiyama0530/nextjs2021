@@ -1,13 +1,10 @@
 import { Icon, Typography } from "@mui/material"
-import type { NextPage } from "next"
-import Head from "next/head"
-import Image from "next/image"
-import React from "react"
 import type { ReactElement } from "react"
-import MasterLayout from "../components/layout/MasterLayout"
+import React from "react"
+import { Layer1Layout } from "../components/layout/Layer1Layout"
+import { MasterLayout } from "../components/layout/MasterLayout"
+import Link from "../components/link/Link"
 import { usePrice } from "../hooks/usePrice"
-import styles from "../styles/Home.module.css"
-import Layer1Layout from "../components/layout/Layer1Layout"
 
 const HomePage = () => {
   const { price, loading, error } = usePrice("BTCUSDT")
@@ -20,6 +17,7 @@ const HomePage = () => {
       <Typography>
         {price?.symbol} - {price?.price}
       </Typography>
+      <Link href="/login">Login</Link>
     </div>
   )
 }

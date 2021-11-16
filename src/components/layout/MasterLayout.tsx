@@ -3,12 +3,12 @@ import React from "react"
 import { useRecoilValue } from "recoil"
 import { authState, checkAuthSelector } from "../../store/auth"
 
-export type MasterLayoutProps = {
+export type Props = {
   children: React.ReactNode
   maxWidth?: Breakpoint | false
 }
 
-export default function MasterLayout(props: Readonly<MasterLayoutProps>) {
+export function MasterLayout(props: Readonly<Props>) {
   const { children, maxWidth } = props
   const auth = useRecoilValue(checkAuthSelector)
   const user = useRecoilValue(authState)?.user

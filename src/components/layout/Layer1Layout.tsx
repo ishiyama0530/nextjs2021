@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material"
 import React from "react"
 
-export type MasterLayoutProps = {
+export type Props = {
   children: React.ReactNode
 }
 
-export default function Layer1Layout(props: Readonly<MasterLayoutProps>) {
+export function Layer1Layout(props: Readonly<Props>) {
   const { children } = props
   return (
     <>

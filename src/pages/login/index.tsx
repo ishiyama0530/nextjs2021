@@ -1,10 +1,11 @@
-import { Button, Stack, TextField } from "@mui/material"
-import React, { ReactElement } from "react"
-import MasterLayout from "../../components/layout/MasterLayout"
-import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod"
-import * as z from "zod"
+import { Button, Stack, TextField } from "@mui/material"
+import { useRouter } from "next/dist/client/router"
+import React, { ReactElement } from "react"
+import { useForm } from "react-hook-form"
 import { useSetRecoilState } from "recoil"
+import * as z from "zod"
+import { MasterLayout } from "../../components/layout/MasterLayout"
 import { authState } from "../../store/auth"
 
 const schema = z.object({
@@ -15,6 +16,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 const LoginPage = () => {
+  const router = useRouter()
   const setAuthState = useSetRecoilState(authState)
   const {
     register,
@@ -26,6 +28,7 @@ const LoginPage = () => {
     setAuthState({
       user: { name: data.username },
     })
+    router.push("/")
   }
 
   return (
