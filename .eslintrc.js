@@ -5,5 +5,6 @@ module.exports = {
     "no-var": "error",
     "prefer-const": "error",
     "react/display-name": "off",
+    "react-hooks/exhaustive-deps": "off",
   },
 }
