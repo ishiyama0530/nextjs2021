@@ -4,5 +4,6 @@ module.exports = {
     "no-console": "warn",
     "no-var": "error",
     "prefer-const": "error",
+    "react/display-name": "off",
   },
 }
