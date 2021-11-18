@@ -1,22 +1,26 @@
-import { Breakpoint, Container, ContainerTypeMap, Typography } from "@mui/material"
+import { Breakpoint, Container, Typography } from "@mui/material"
 import React from "react"
-import { useRecoilValue } from "recoil"
-import { authState, checkAuthSelector } from "../../store/auth"
+import { useSession } from "../../hooks/useSession"
+import { Redirect } from "../link/Redirect"
 
 export type Props = {
   children: React.ReactNode
   maxWidth?: Breakpoint | false
+  publicRoute?: boolean
 }
 
 export function MasterLayout(props: Readonly<Props>) {
-  const { children, maxWidth } = props
-  const auth = useRecoilValue(checkAuthSelector)
-  const user = useRecoilValue(authState)?.user
+  const { children, maxWidth, publicRoute } = props
+  const session = useSession()
+
+  if (!publicRoute && !session) {
+    return <Redirect url="/login" />
+  }
 
   return (
     <>
       <Typography>TITLE</Typography>
-      <Typography>{auth && user?.name}</Typography>
+      <Typography>{session && session.user.name}</Typography>
       <Container component="main" maxWidth={maxWidth}>
         {children}
       </Container>

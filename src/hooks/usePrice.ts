@@ -5,7 +5,11 @@ export type Price = {
   price: number
 }
 
-export function usePrice(symbol: string) {
+export function usePrice(symbol: string): {
+  price: Price | undefined
+  loading: boolean
+  error: any
+} {
   const { data, error } = useSWR<Price>(
     `https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`
   )

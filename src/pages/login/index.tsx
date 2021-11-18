@@ -78,7 +78,11 @@ const LoginPage = () => {
 }
 
 LoginPage.getLayout = function getLayout(page: ReactElement) {
-  return <MasterLayout maxWidth="xs">{page}</MasterLayout>
+  return (
+    <MasterLayout publicRoute maxWidth="xs">
+      {page}
+    </MasterLayout>
+  )
 }
 
 export default LoginPage
