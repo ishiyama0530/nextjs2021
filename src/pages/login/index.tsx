@@ -34,7 +34,7 @@ const LoginPage = () => {
         user: { name: data.username },
       })
       router.push("/")
-    }, 2000)
+    }, 1000)
   }
 
   return (
