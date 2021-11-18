@@ -16,7 +16,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <link
-            href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone&display=optional"
+            href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone&display=swap"
             rel="stylesheet"
           />
         </Head>
