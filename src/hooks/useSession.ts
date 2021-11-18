@@ -10,16 +10,15 @@ export type Session = {
 }
 
 export function useSession(): Session | undefined {
-  const auth = useRecoilValue(checkAuthSelector)
   const user = useRecoilValue(authState)?.user
 
-  if (!auth) {
+  if (!user) {
     return undefined
   }
 
   return {
     user: {
-      name: user!.name,
+      name: user.name,
     },
   }
 }
