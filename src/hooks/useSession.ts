@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil"
-import { authState, checkAuthSelector } from "../store/auth"
+import { authState } from "../store/auth"
 
 export type User = {
   name: string
