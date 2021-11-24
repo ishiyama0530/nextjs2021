@@ -1,5 +1,4 @@
-import { Breakpoint, Container, Theme, useTheme } from "@mui/material"
-import { createStyles, makeStyles } from "@mui/styles"
+import { Breakpoint, Container, styled, Theme, useTheme } from "@mui/material"
 import { useRouter } from "next/dist/client/router"
 import React, { useEffect } from "react"
 import Loading from "react-loading"
@@ -16,15 +15,21 @@ export type Props = {
   noHeader?: boolean
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    main: {
-      [theme.breakpoints.up("xs")]: {
-        margin: 0,
-        padding: 0,
-      },
-    },
-  })
+const MainContainer = styled(Container)(
+  ({ theme, maxWidth }: { theme: Theme; maxWidth?: Breakpoint | false }) => {
+    if (maxWidth) {
+      return {
+        maxWidth: maxWidth,
+      }
+    } else {
+      return {
+        [theme.breakpoints.up("xs")]: {
+          margin: 0,
+          padding: 0,
+        },
+      }
+    }
+  }
 )
 
 export function MasterLayout(props: Readonly<Props>) {
@@ -32,7 +37,6 @@ export function MasterLayout(props: Readonly<Props>) {
   const session = useSession()
   const router = useRouter()
   const theme = useTheme()
-  const classes = useStyles()
   const [layer1Shrink, setLayer1Shrink] = useRecoilState(layer1ShrinkState)
 
   const allowAccess = publicRoute || !!session
@@ -52,9 +56,9 @@ export function MasterLayout(props: Readonly<Props>) {
           {!noHeader && (
             <Header user={session?.user} onMenuShrinkButtonClicked={onMenuShrinkButtonClicked} />
           )}
-          <Container component="main" maxWidth={maxWidth} className={maxWidth ? "" : classes.main}>
+          <MainContainer component="main" maxWidth={maxWidth}>
             {children}
-          </Container>
+          </MainContainer>
         </>
       ) : (
         <CentralBox>
