@@ -5,13 +5,13 @@ export type Props = { fullWidth?: boolean } & OuterBoxProps
 
 type OuterBoxProps = { adjustHeight?: string } & BoxProps
 
-const OuterBox = styled(({ adjustHeight, ...others }: OuterBoxProps) => <Box {...others} />)`
-  height: ${({ adjustHeight }) => (adjustHeight ? "calc(100vh - " + adjustHeight + ")" : "100vh")};
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
+const OuterBox = styled(Box)(({ adjustHeight }: { adjustHeight?: string }) => ({
+  height: adjustHeight ? "calc(100vh - " + adjustHeight + ")" : "100vh",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+}))
 
 export function CentralBox(props: Readonly<Props>) {
   const { children, fullWidth, ...otherProps } = props
