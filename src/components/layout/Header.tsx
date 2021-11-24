@@ -12,7 +12,7 @@ export function Header(props: Readonly<Props>) {
 
   return (
     <Box component="header" sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: (theme) => theme.palette.grey[800] }}>
         <Toolbar>
           <IconButton
             size="large"

@@ -9,7 +9,7 @@ export type Props = {
 const Container = styled(Box)(({ theme, shrink }: { theme: Theme; shrink?: boolean }) => {
   const base = {
     height: "100vh",
-    background: "red",
+    background: theme.palette.grey[800],
   }
 
   if (shrink) {
