@@ -7,12 +7,12 @@ import {
   ListItemText,
   Stack,
 } from "@mui/material"
-import { CSSProperties } from "@mui/styled-engine"
 import React from "react"
 import { useRecoilValue } from "recoil"
 import { layer1ShrinkState } from "../../store/app/menu"
 import { MIcon } from "../icon/MIcon"
 import Drawer from "./Drawer"
+import { useRouter } from "next/dist/client/router"
 
 export type Props = {
   children: React.ReactNode
@@ -20,17 +20,35 @@ export type Props = {
 
 export function Layer1Layout(props: Readonly<Props>) {
   const { children } = props
+  const router = useRouter()
   const shrink = useRecoilValue(layer1ShrinkState)
 
   return (
     <Stack direction="row">
       <Drawer shrink={shrink}>
-        <nav aria-label="menu" style={{ overflow: "hidden" }}>
+        <nav aria-label="menu">
           <List>
-            <Item shrink={shrink} />
-            <Item shrink={shrink} />
-            <Item shrink={shrink} active />
-            <Item shrink={shrink} />
+            <Item
+              shrink={shrink}
+              text="HOME"
+              icon="home"
+              active={router.route === "/"}
+              onClick={() => router.push("/")}
+            />
+            <Item
+              shrink={shrink}
+              text="SETTINGS"
+              icon="settings"
+              active={router.route === "/settings"}
+              onClick={() => router.push("/settings")}
+            />
+            <Item
+              shrink={shrink}
+              text="HELP"
+              icon="privacy_tip"
+              active={router.route === "/help"}
+              onClick={() => router.push("/help")}
+            />
           </List>
         </nav>
       </Drawer>
@@ -39,15 +57,25 @@ export function Layer1Layout(props: Readonly<Props>) {
   )
 }
 
-const activeStyle: CSSProperties = {
+type ItemProps = {
+  active?: boolean
+  shrink: boolean
+  text: string
+  icon: string
+  onClick: () => void
+}
+
+const activeStyle: React.CSSProperties = {
   textDecoration: "none",
   backgroundColor: "rgba(0, 0, 0, 0.1)",
 }
 
-const Item = ({ active, shrink }: { active?: boolean; shrink: boolean }) => {
+const Item = (props: ItemProps) => {
+  const { active, shrink, text, icon, onClick } = props
   const style = active ? activeStyle : undefined
+
   return (
-    <ListItem disablePadding sx={{ minHeight: 48 }}>
+    <ListItem disablePadding sx={{ minHeight: 48 }} style={style} onClick={onClick}>
       <ListItemButton
         sx={{ pl: 2, maxWidth: (theme) => (shrink ? theme.spacing(7) : theme.spacing(20)) }}
       >
@@ -56,9 +84,9 @@ const Item = ({ active, shrink }: { active?: boolean; shrink: boolean }) => {
             minWidth: 40,
           }}
         >
-          <MIcon color="#FFF">dashboard</MIcon>
+          <MIcon color="#FFF">{icon}</MIcon>
         </ListItemIcon>
-        <ListItemText primary="Dashboard" primaryTypographyProps={{ color: "#FFF" }} />
+        <ListItemText primary={text} primaryTypographyProps={{ color: "#FFF" }} />
       </ListItemButton>
     </ListItem>
   )

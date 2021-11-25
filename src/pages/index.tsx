@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material"
+import { Typography, Box } from "@mui/material"
 import type { ReactElement } from "react"
 import React from "react"
 import { MIcon } from "../components/icon/MIcon"
@@ -13,13 +13,13 @@ const HomePage = () => {
   if (loading) return <div>LOADING</div>
   if (error) return <div>ERROR</div>
   return (
-    <div>
+    <Box>
       <MIcon>savings</MIcon>
       <Typography>
         {price?.symbol} - {price?.price}
       </Typography>
       <Link href="/login">Login</Link>
-    </div>
+    </Box>
   )
 }
 
