@@ -1,4 +1,4 @@
-import { Breakpoint, Container, styled, Theme, useTheme } from "@mui/material"
+import { Breakpoint, Container, ContainerProps, styled, Theme, useTheme } from "@mui/material"
 import { useRouter } from "next/dist/client/router"
 import React, { useEffect } from "react"
 import Loading from "react-loading"
@@ -14,23 +14,6 @@ export type Props = {
   publicRoute?: boolean
   noHeader?: boolean
 }
-
-const MainContainer = styled(Container)(
-  ({ theme, maxWidth }: { theme: Theme; maxWidth?: Breakpoint | false }) => {
-    if (maxWidth) {
-      return {
-        maxWidth: maxWidth,
-      }
-    } else {
-      return {
-        [theme.breakpoints.up("xs")]: {
-          margin: 0,
-          padding: 0,
-        },
-      }
-    }
-  }
-)
 
 export function MasterLayout(props: Readonly<Props>) {
   const { children, maxWidth, publicRoute, noHeader } = props
@@ -56,9 +39,7 @@ export function MasterLayout(props: Readonly<Props>) {
           {!noHeader && (
             <Header user={session?.user} onMenuShrinkButtonClicked={onMenuShrinkButtonClicked} />
           )}
-          <MainContainer component="main" maxWidth={maxWidth}>
-            {children}
-          </MainContainer>
+          <MainContainer maxWidth={maxWidth}>{children}</MainContainer>
         </>
       ) : (
         <CentralBox>
@@ -68,3 +49,16 @@ export function MasterLayout(props: Readonly<Props>) {
     </>
   )
 }
+
+const MainContainer = styled((props: ContainerProps) => <Container component="main" {...props} />)(
+  ({ theme, maxWidth }: { theme: Theme } & ContainerProps) => {
+    if (!maxWidth) {
+      return {
+        [theme.breakpoints.up("xs")]: {
+          margin: 0,
+          padding: 0,
+        },
+      }
+    }
+  }
+)

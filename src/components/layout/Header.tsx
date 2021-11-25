@@ -1,6 +1,7 @@
-import { Box, Toolbar, IconButton, Typography, Button, Icon, AppBar } from "@mui/material"
-import React, { useEffect } from "react"
+import { AppBar, Box, Button, IconButton, Toolbar, Typography } from "@mui/material"
+import React from "react"
 import { User } from "../../hooks/useSession"
+import { MIcon } from "../icon/MIcon"
 
 export type Props = {
   user?: User
@@ -12,17 +13,17 @@ export function Header(props: Readonly<Props>) {
 
   return (
     <Box component="header" sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: (theme) => theme.palette.grey[800] }}>
-        <Toolbar>
+      <AppBar position="static" sx={{ backgroundColor: (theme) => theme.palette.primary.main }}>
+        <Toolbar sx={{ pl: { xs: 2 } }}>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 1 }}
             onClick={onMenuShrinkButtonClicked}
           >
-            <Icon>menu</Icon>
+            <MIcon>menu</MIcon>
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             TITLE
