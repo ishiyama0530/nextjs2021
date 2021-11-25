@@ -2,9 +2,7 @@ import { Breakpoint, Container, ContainerProps, styled, Theme, useTheme } from "
 import { useRouter } from "next/dist/client/router"
 import React, { useEffect } from "react"
 import Loading from "react-loading"
-import { useRecoilState } from "recoil"
 import { useSession } from "../../hooks/useSession"
-import { layer1ShrinkState } from "../../store/app/menu"
 import { CentralBox } from "../box/CentralBox"
 import { Header } from "./Header"
 
@@ -20,7 +18,6 @@ export function MasterLayout(props: Readonly<Props>) {
   const session = useSession()
   const router = useRouter()
   const theme = useTheme()
-  const [layer1Shrink, setLayer1Shrink] = useRecoilState(layer1ShrinkState)
 
   const allowAccess = publicRoute || !!session
 
@@ -30,15 +27,11 @@ export function MasterLayout(props: Readonly<Props>) {
     }
   }, [allowAccess])
 
-  const onMenuShrinkButtonClicked = () => setLayer1Shrink(!layer1Shrink)
-
   return (
     <>
       {allowAccess ? (
         <>
-          {!noHeader && (
-            <Header user={session?.user} onMenuShrinkButtonClicked={onMenuShrinkButtonClicked} />
-          )}
+          {!noHeader && <Header user={session?.user} />}
           <MainContainer maxWidth={maxWidth}>{children}</MainContainer>
         </>
       ) : (

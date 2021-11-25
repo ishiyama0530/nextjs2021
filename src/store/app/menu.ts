@@ -1,8 +1,8 @@
 import { atom } from "recoil"
 
-type Layer1Shrink = boolean
+type layer1MenuOpen = boolean
 
-export const layer1ShrinkState = atom<Layer1Shrink>({
-  key: "layer1Shrink",
+export const layer1MenuOpenState = atom<layer1MenuOpen>({
+  key: "layer1MenuOpenState",
   default: false,
 })

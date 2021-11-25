@@ -2,26 +2,26 @@ import { Theme, Box, styled } from "@mui/material"
 import React from "react"
 
 export type Props = {
-  shrink?: boolean
+  open?: boolean
   children?: React.ReactNode
 }
 
 export default function Drawer(props: Readonly<Props>) {
-  const { shrink, children } = props
+  const { open, children } = props
 
-  return <DrawerBox shrink={!!shrink}>{children}</DrawerBox>
+  return <DrawerBox open={!!open}>{children}</DrawerBox>
 }
 
-const DrawerBox = styled(Box)(({ theme, shrink }: { theme: Theme; shrink: boolean }) => {
+const DrawerBox = styled(Box)(({ theme, open }: { theme: Theme; open: boolean }) => {
   const base = {
-    height: "100vh",
+    height: "calc(100vh - 64px)",
     overflow: "hidden",
     background: theme.palette.primary.main,
   }
 
-  if (shrink) {
-    return { ...base, transition: "all 0.5s ease", width: theme.spacing(7) }
-  } else {
+  if (open) {
     return { ...base, transition: "all 0.5s ease", width: theme.spacing(20) }
+  } else {
+    return { ...base, transition: "all 0.5s ease", width: theme.spacing(7) }
   }
 })

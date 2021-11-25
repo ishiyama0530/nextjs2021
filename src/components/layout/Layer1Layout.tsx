@@ -8,8 +8,8 @@ import {
   Stack,
 } from "@mui/material"
 import React from "react"
-import { useRecoilValue } from "recoil"
-import { layer1ShrinkState } from "../../store/app/menu"
+import { useRecoilState, useRecoilValue } from "recoil"
+import { layer1MenuOpenState } from "../../store/app/menu"
 import { MIcon } from "../icon/MIcon"
 import Drawer from "./Drawer"
 import { useRouter } from "next/dist/client/router"
@@ -21,36 +21,50 @@ export type Props = {
 export function Layer1Layout(props: Readonly<Props>) {
   const { children } = props
   const router = useRouter()
-  const shrink = useRecoilValue(layer1ShrinkState)
+  const [menuOpen, setMeuOpen] = useRecoilState(layer1MenuOpenState)
+
+  const onMenuShrinkButtonClicked = () => setMeuOpen(!menuOpen)
 
   return (
     <Stack direction="row">
-      <Drawer shrink={shrink}>
-        <nav aria-label="menu">
-          <List>
+      <Drawer open={menuOpen}>
+        <Box
+          component="nav"
+          aria-label="menu"
+          sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+        >
+          <List sx={{ flexGrow: 1 }}>
             <Item
-              shrink={shrink}
+              open={menuOpen}
               text="HOME"
               icon="home"
               active={router.route === "/"}
               onClick={() => router.push("/")}
             />
             <Item
-              shrink={shrink}
+              open={menuOpen}
               text="SETTINGS"
               icon="settings"
               active={router.route === "/settings"}
               onClick={() => router.push("/settings")}
             />
             <Item
-              shrink={shrink}
+              open={menuOpen}
               text="HELP"
               icon="privacy_tip"
               active={router.route === "/help"}
               onClick={() => router.push("/help")}
             />
           </List>
-        </nav>
+          <List>
+            <Item
+              open={menuOpen}
+              icon={menuOpen ? "menu_open" : "menu"}
+              active={router.route === "/"}
+              onClick={onMenuShrinkButtonClicked}
+            />
+          </List>
+        </Box>
       </Drawer>
       <Box padding={3}>{children}</Box>
     </Stack>
@@ -59,8 +73,8 @@ export function Layer1Layout(props: Readonly<Props>) {
 
 type ItemProps = {
   active?: boolean
-  shrink: boolean
-  text: string
+  open: boolean
+  text?: string
   icon: string
   onClick: () => void
 }
@@ -71,13 +85,13 @@ const activeStyle: React.CSSProperties = {
 }
 
 const Item = (props: ItemProps) => {
-  const { active, shrink, text, icon, onClick } = props
+  const { active, open, text, icon, onClick } = props
   const style = active ? activeStyle : undefined
 
   return (
     <ListItem disablePadding sx={{ minHeight: 48 }} style={style} onClick={onClick}>
       <ListItemButton
-        sx={{ pl: 2, maxWidth: (theme) => (shrink ? theme.spacing(7) : theme.spacing(20)) }}
+        sx={{ pl: 2, maxWidth: (theme) => (open ? theme.spacing(20) : theme.spacing(7)) }}
       >
         <ListItemIcon
           sx={{
