@@ -60,7 +60,6 @@ export function Layer1Layout(props: Readonly<Props>) {
             <Item
               open={menuOpen}
               icon={menuOpen ? "menu_open" : "menu"}
-              active={router.route === "/"}
               onClick={onMenuShrinkButtonClicked}
             />
           </List>
