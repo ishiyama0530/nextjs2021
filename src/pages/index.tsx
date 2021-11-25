@@ -18,7 +18,6 @@ const HomePage = () => {
       <Typography>
         {price?.symbol} - {price?.price}
       </Typography>
-      <Link href="/login">Login</Link>
     </Box>
   )
 }
