@@ -1,3 +1,3 @@
-const toolbarHeight = "48px"
+const toolbarHeight = "52px"
 
 export { toolbarHeight }

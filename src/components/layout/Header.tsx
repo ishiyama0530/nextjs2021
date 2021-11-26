@@ -62,6 +62,7 @@ export function Header(props: Readonly<Props>) {
                 color="inherit"
                 aria-label="account"
                 onClick={onAccountIconClick}
+                sx={{ p: 1 }}
               >
                 <MIcon size="36px">account_circle</MIcon>
               </IconButton>
