@@ -1,5 +1,4 @@
-import { Typography } from "@mui/material"
-import { styled } from "@mui/system"
+import { Typography, styled } from "@mui/material"
 import React from "react"
 import { CentralBox } from "../components/box/CentralBox"
 
