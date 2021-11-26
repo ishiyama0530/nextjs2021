@@ -2,6 +2,7 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material"
 import React, { useState } from "react"
 import { useSetRecoilState } from "recoil"
 import { User } from "../../hooks/useSession"
+import { toolbarHeight } from "../../libs/constants/layout"
 import { authState } from "../../store/auth"
 import { MIcon } from "../icon/MIcon"
 import { Link } from "../link/Link"
@@ -31,8 +32,21 @@ export function Header(props: Readonly<Props>) {
 
   return (
     <Box component="header" sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: (theme) => theme.palette.primary.main }}>
-        <Toolbar>
+      <AppBar position="static">
+        <Toolbar
+          sx={{
+            backgroundColor: "primary.main",
+            pl: {
+              xs: 3,
+            },
+            pr: {
+              xs: 3,
+            },
+            minHeight: {
+              xs: toolbarHeight,
+            },
+          }}
+        >
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link href="/" sx={{ color: "#FFF" }}>
               TITLE

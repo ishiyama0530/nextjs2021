@@ -1,5 +1,6 @@
 import { Theme, Box, styled } from "@mui/material"
 import React from "react"
+import { toolbarHeight } from "../../libs/constants/layout"
 
 export type Props = {
   open?: boolean
@@ -14,7 +15,7 @@ export default function Drawer(props: Readonly<Props>) {
 
 const DrawerBox = styled(Box)(({ theme, open }: { theme: Theme; open: boolean }) => {
   const base = {
-    height: "calc(100vh - 64px)",
+    height: `calc(100vh - ${toolbarHeight})`,
     overflow: "hidden",
     background: theme.palette.primary.main,
   }
