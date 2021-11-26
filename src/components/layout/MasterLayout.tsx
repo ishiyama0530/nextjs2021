@@ -55,3 +55,14 @@ const MainContainer = styled((props: ContainerProps) => <Container component="ma
     }
   }
 )
+
+// sx で置き換え
+// const MainContainer = (props: { maxWidth?: Breakpoint | false; children: React.ReactNode }) => {
+//   const { children, maxWidth } = props
+//   const sx: SxProps<Theme> | undefined = maxWidth ? undefined : { m: { xs: 0 }, p: { xs: 0 } }
+//   return (
+//     <Container component="main" {...props} sx={sx}>
+//       {children}
+//     </Container>
+//   )
+// }
