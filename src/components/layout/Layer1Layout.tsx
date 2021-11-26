@@ -97,7 +97,7 @@ const Item = (props: ItemProps) => {
             minWidth: 40,
           }}
         >
-          <MIcon color="#FFF">{icon}</MIcon>
+          <MIcon sx={{ color: "#FFF" }}>{icon}</MIcon>
         </ListItemIcon>
         <ListItemText primary={text} primaryTypographyProps={{ color: "#FFF" }} />
       </ListItemButton>
