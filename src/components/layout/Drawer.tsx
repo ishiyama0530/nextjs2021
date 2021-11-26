@@ -13,16 +13,16 @@ export default function Drawer(props: Readonly<Props>) {
   return <DrawerBox open={!!open}>{children}</DrawerBox>
 }
 
-const DrawerBox = styled(Box)(({ theme, open }: { theme: Theme; open: boolean }) => {
+const DrawerBox = styled(Box)(({ theme, open }: { theme?: Theme; open: boolean }) => {
   const base = {
     height: `calc(100vh - ${toolbarHeight})`,
     overflow: "hidden",
-    background: theme.palette.primary.main,
+    background: theme?.palette.primary.main,
   }
 
   if (open) {
-    return { ...base, transition: "all 0.5s ease", width: theme.spacing(20) }
+    return { ...base, transition: "all 0.5s ease", width: theme?.spacing(20) }
   } else {
-    return { ...base, transition: "all 0.5s ease", width: theme.spacing(7) }
+    return { ...base, transition: "all 0.5s ease", width: theme?.spacing(7) }
   }
 })
