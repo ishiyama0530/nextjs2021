@@ -26,3 +26,16 @@ const DrawerBox = styled(Box)(({ theme, open }: { theme?: Theme; open: boolean }
     return { ...base, transition: "all 0.5s ease", width: theme?.spacing(7) }
   }
 })
+
+// sx で置き換え
+// const DrawerBox = ({ open, ...others }: { open: boolean; children: React.ReactNode }) => {
+//   const base: SxProps<Theme> = {
+//     height: `calc(100vh - ${toolbarHeight})`,
+//     overflow: "hidden",
+//     background: (theme) => theme.palette.primary.main,
+//   }
+//   const sx: SxProps<Theme> = open
+//     ? { ...base, transition: "all 0.5s ease", width: (theme) => theme.spacing(20) }
+//     : { ...base, transition: "all 0.5s ease", width: (theme) => theme.spacing(7) }
+//   return <Box {...others} sx={sx} />
+// }
