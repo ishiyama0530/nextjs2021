@@ -99,7 +99,10 @@ const Item = (props: ItemProps) => {
         >
           <MIcon sx={{ color: "#FFF" }}>{icon}</MIcon>
         </ListItemIcon>
-        <ListItemText primary={text} primaryTypographyProps={{ color: "#FFF" }} />
+        <ListItemText
+          primary={text}
+          primaryTypographyProps={{ color: "#FFF", whiteSpace: "nowrap" }}
+        />
       </ListItemButton>
     </ListItem>
   )

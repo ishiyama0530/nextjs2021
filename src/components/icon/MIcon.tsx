@@ -10,7 +10,7 @@ export type Props = {
 export function MIcon(props: Readonly<Props>) {
   const { children, sx, size } = props
 
-  const csx: SxProps<Theme> = { ...sx, fontSize: size ?? "24px" }
+  const csx: SxProps<Theme> = { ...sx, fontSize: `${size} !important` ?? "24px !important" }
 
   return (
     <Box component="span" className="material-icons" sx={csx}>
